@@ -5,7 +5,6 @@ import {
 import DrawerLayout from './containers/drawer'
 import AppBarLayout from './containers/appbar';
 const Layout = (props) =>{
-    const [anchorEl, setAnchorEl] = useState(false);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(false);
     const [drawer,setDrawer] = useState(false)
     const handleMobileMenuOpen = (event) => {

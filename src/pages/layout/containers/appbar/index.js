@@ -28,6 +28,9 @@ const AppBarLayout = (props) =>{
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
         >
+            <Typography sx={{ display: { md: 'none' } }} variant="overline" component="div">
+                {'จำนวนเงิน 0 บาท'}
+            </Typography>
             <MenuItem>
                 <IconButton
                     size="large"
@@ -59,6 +62,9 @@ const AppBarLayout = (props) =>{
                         Vending Machine
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
+                    <Typography sx={{ display: { xs: 'none', md: 'flex' } }} variant="overline" component="div">
+                        {'จำนวนเงิน 0 บาท'}
+                    </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                         <IconButton
                             size="large"
