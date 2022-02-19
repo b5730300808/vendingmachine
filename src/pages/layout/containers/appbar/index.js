@@ -7,13 +7,24 @@ import {
     IconButton, 
     Badge,
     Menu,
-    MenuItem
+    MenuItem,
+    Button
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import AddIcon from '@mui/icons-material/Add';
+import HighlightOffRoundedIcon from '@mui/icons-material/HighlightOffRounded';
 const AppBarLayout = (props) =>{
-    const {onClick,handleMobileMenuOpen,handleMobileMenuClose,isMobileMenuOpen} = props;
+    const {
+        onClick,
+        price=0,
+        onOpenPrice,
+        handleMobileMenuOpen,
+        handleMobileMenuClose,
+        isMobileMenuOpen,
+        onCanclePrice
+    } = props;
     const renderMobileMenu = (
         <Menu
             anchorOrigin={{
@@ -29,19 +40,36 @@ const AppBarLayout = (props) =>{
             onClose={handleMobileMenuClose}
         >
             <Typography sx={{ display: { md: 'none' } }} variant="overline" component="div">
-                {'จำนวนเงิน 0 บาท'}
+                {'จำนวนเงิน '+price+' บาท'}
             </Typography>
             <MenuItem>
-                <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <ShoppingCartIcon />
-                    </Badge>
-                </IconButton>
-            </MenuItem>
+                <Box sx={{ display: { md: 'none' } }}>
+                    <Button
+                        size="small"
+                        aria-label="show 17 new notifications"
+                        color="inherit"
+                        variant="outlined"
+                        onClick={onOpenPrice}
+                    >
+                        <AddIcon />
+                        {'เติมเงิน'}
+                    </Button>
+                </Box>
+            </MenuItem>        
+            <MenuItem>
+                <Box sx={{ display: { md: 'none' } }}>
+                    <Button
+                        size="small"
+                        aria-label="show 17 new notifications"
+                        color="error"
+                        variant="outlined"
+                        onClick={onCanclePrice}
+                    >
+                        <AddIcon />
+                        {'ยกเลิก'}
+                    </Button>
+                </Box>
+            </MenuItem>        
         </Menu>
     );
     return(
@@ -62,20 +90,33 @@ const AppBarLayout = (props) =>{
                         Vending Machine
                     </Typography>
                     <Box sx={{ flexGrow: 1 }} />
-                    <Typography sx={{ display: { xs: 'none', md: 'flex' } }} variant="overline" component="div">
-                        {'จำนวนเงิน 0 บาท'}
+                    <Typography sx={{ display: { xs: 'none', md: 'flex' },paddingRight:'10px' }} variant="overline" component="div">
+                        {'จำนวนเงิน '+price+' บาท'}
                     </Typography>
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton
-                            size="large"
+                        <Button
+                            size="small"
                             aria-label="show 17 new notifications"
-                            color="inherit"
+                            color="primary"
+                            variant="contained"
+                            onClick={onOpenPrice}
                         >
-                            <Badge badgeContent={17} color="error">
-                                <ShoppingCartIcon />
-                            </Badge>
-                        </IconButton>
+                            <AddIcon />
+                            {'เติมเงิน'}
+                        </Button>
                     </Box>
+                    <Box sx={{ display: { xs: 'none', md: 'flex'} }}>
+                        <Button
+                            size="small"
+                            aria-label="show 17 new notifications"
+                            color="error"
+                            variant="contained"
+                            onClick={onCanclePrice}
+                        >
+                            <HighlightOffRoundedIcon />
+                            {'ยกเลิก'}
+                        </Button>
+                    </Box>   
                     <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                         <IconButton
                             size="large"
@@ -90,6 +131,7 @@ const AppBarLayout = (props) =>{
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}   
+
         </>
     );
 }

@@ -16,7 +16,7 @@ const Menu = (props) =>{
                     position="below"
                 />     
                 <Box>
-                    <Button fullWidth>{"Add"}</Button>                    
+                    <Button fullWidth>{"ซื้อ"}</Button>                    
                 </Box>            
             </ImageListItem>                
 
