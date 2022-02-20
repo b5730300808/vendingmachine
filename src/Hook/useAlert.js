@@ -1,7 +1,10 @@
 import {useState} from 'react'
-
+const initialAlert = {
+    open: false,
+    text: '',
+    colorNotify: 'error',
+}
 export const useAlert = () =>{
-    const [open,setopen] = useState(false);
-    const [massage,setmassage] = useState('');
-    return {open,setopen,massage,setmassage};
+    const [alert, setalert] = useState(initialAlert);
+    return {alert, setalert};
 }

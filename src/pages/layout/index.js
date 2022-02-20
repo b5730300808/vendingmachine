@@ -6,21 +6,29 @@ import {
 import DrawerLayout from './containers/drawer'
 import AppBarLayout from './containers/appbar';
 import { useMoneyContext } from '../../reducer/moneyReducer';
+import { useStockContext } from '../../reducer/stockReducer';
 import {moneyAction} from './../../action/money.action'
 import { DialogAddMoney } from './containers/dialogAddMoney';
 import { DialogShowMoney } from './containers/dialogShowMoney';
+import { useAlert } from '../../Hook/useAlert';
+import { AlertDialog } from '../../components/Alert';
 const Layout = (props) =>{
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = useState(false);
     const [tricker,settricker] = useState(false);
     const [openprice,setopenprice] = useState(false)
     const [opencancle,setopencancle] = useState(false)
     const [drawer,setDrawer] = useState(false)
+    const {alert, setalert} = useAlert();
     const moneyContext = useMoneyContext()
     const {
         money,
         setmoney,
         onReset
-    } = moneyContext
+    } = moneyContext;
+    const stockContext =  useStockContext();
+    const {
+        stockBackdrop,
+    } = stockContext;
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
@@ -49,18 +57,26 @@ const Layout = (props) =>{
         const status = await moneyAction.Add(money,totalValue)
         // { success: true, message: 'success' }
         if(status.data.success){
+            await setalert({ ...alert,text:'เติมเงินสำเร็จ',colorNotify:'success',open: true })
             await settricker(!tricker);
             await onReset();
             await onClosePriceDialog();
+        }
+        else{
+            await setalert({ ...alert,text:'เติมเงินไม่สำเร็จ',colorNotify:'error',open: true })
         }
     }
     const ResponceMoney = async() =>{
         const status = await moneyAction.ResCashBack()
         // { success: true, message: 'success' }
         if(status.data.success){
+            await setalert({ ...alert,text:'ถอนเงินสำเร็จ',colorNotify:'success',open: true })
             await settricker(!tricker);
             await onReset();
             await onCloseCanclePrice();
+        }
+        else{
+            await setalert({ ...alert,text:'ถอนเงินไม่สำเร็จ',colorNotify:'error',open: true })
         }
     }
     const onOpenCloseDialog = async() =>{
@@ -73,7 +89,7 @@ const Layout = (props) =>{
     }
     useEffect(()=>{
         getMoney()
-    },[tricker])
+    },[tricker,stockBackdrop])
     const totalPrice = useMemo(() =>{
         return money.price;
     },[money.price]);
@@ -108,6 +124,10 @@ const Layout = (props) =>{
     },[money.fifty, money.five, money.fivehundred, money.one, money.onehundred, money.ten, money.thousand, money.twenty]);
     return(
         <>
+            <AlertDialog
+                alert={alert}
+                onClose={() => setalert({ ...alert, open: false })}
+            />
             <AppBarLayout  
                 price={totalPrice}
                 onOpenPrice={onOpenPriceDialog}

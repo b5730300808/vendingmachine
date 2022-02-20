@@ -7,9 +7,22 @@ import {
     Divider,
     ListItemText
 } from '@mui/material';
-import LoginIcon from '@mui/icons-material/Login';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import HomeIcon from '@mui/icons-material/Home';
+import MoneyIcon from '@mui/icons-material/Money';
+import { useNavigate } from 'react-router-dom';
 const DrawerLayout = (props) =>{
+    const navigate = useNavigate()
     const {open,onClose} = props;
+    const onClick = () =>{
+        navigate('/stock')
+    }
+    const onClickHome = () =>{
+        navigate('/')
+    }
+    const onClickMoneyStock = () =>{
+        navigate('/moneystock')
+    }
     return(
         <Drawer
             anchor={'left'}
@@ -18,11 +31,23 @@ const DrawerLayout = (props) =>{
         >
         <Divider />
             <List>
-                <ListItem button key={'Login'}>
+                <ListItem button onClick={onClick} key={'Stock'}>
                     <ListItemIcon>
-                        <LoginIcon />
+                        <Inventory2Icon />
                     </ListItemIcon>
-                    <ListItemText primary={'Login'} />
+                    <ListItemText primary={'Stock'} />
+                </ListItem>
+                <ListItem button onClick={onClickHome} key={'Home'}>
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Home'} />
+                </ListItem>
+                <ListItem button onClick={onClickMoneyStock} key={'Money Stock'}>
+                    <ListItemIcon>
+                        <MoneyIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Money Stock'} />
                 </ListItem>
             </List>
     </Drawer>

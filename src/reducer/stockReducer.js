@@ -6,25 +6,36 @@ export function useStockContext() {
     return useContext(StockContext)
 }
 const initialStock = {
-    stocklist:[]
+    stocklist:[],
+    title:'',
+    img:'',
+    price:'',
+    amount:''
 }
 function StockProvider({ children }) {
     const [stock,setstock] = useState(initialStock);
     const [stockBackdrop,setstockBackdrop] = useState(false);
+    const [check,setcheck] = useState(false);
+    const onReset =()=>{
+        setstock({...stock,title:'',img:'',price:'',amount:''})
+    }
     const Getstock = async() =>{
-        await setstockBackdrop(true)
-        let _stocklist = await stockAction.Get()
-        console.log('_stocklist:',_stocklist)
-        await setstock({...stock,stocklist:_stocklist.data})
-        await setstockBackdrop(false)
+        await setstockBackdrop(true);
+        let _stocklist = await stockAction.Get();
+        await setstock({...stock,stocklist:_stocklist.data});
+        await setstockBackdrop(false);
     }
     useEffect(()=>{
-        Getstock()
-    },[])
+        Getstock();
+    },[check]);
     const stockStore = {
         stock,
         stockBackdrop,
-        setstock
+        setstock,
+        setstockBackdrop,
+        check,
+        setcheck,
+        onReset
     }
     return (
         <StockContext.Provider value={stockStore}>

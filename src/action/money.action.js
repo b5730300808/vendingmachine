@@ -1,8 +1,14 @@
-import { AddMoney,GetMoney,ResponeCashBack} from './../service/Money';
+import { 
+    AddMoney,
+    GetMoney,
+    ResponeCashBack,
+    BuyMenu
+} from './../service/Money';
 
 export const moneyAction = {
     Add,
     Get,
+    Buy,
     ResCashBack
 };
 async function Add(_json,totalValue) {
@@ -22,6 +28,10 @@ async function Add(_json,totalValue) {
 }
 async function ResCashBack() {
     let response = await ResponeCashBack();
+    return response;
+}
+async function Buy(menu) {
+    let response = await BuyMenu(menu);
     return response;
 }
 async function Get() {

@@ -2,6 +2,9 @@ import Axios from './../Hook/useAxios';
 export const AddMoney =  async (_json) => {
     return await Axios.post('/Money/AddMoney', _json)
 };
+export const BuyMenu =  async (_json) => {
+    return await Axios.post('/Money/BuyMenu', _json)
+};
 export const GetMoney =  async () => {
     return await Axios.get('/Money/GetMoney')
 };
