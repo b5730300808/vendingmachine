@@ -12,17 +12,22 @@ const initialMoneyStock = {
 };
 function MoneyStockProvider({ children }) {
     const [moneyStock,setmoneyStock] = useState(initialMoneyStock);
-    const [check,setcheck] = useState(true);
+    const [check,setcheck] = useState(false);
+    const [moneystockBackdrop,setmoneystockBackdrop] = useState(false);
     const moneyStockStore = {
         moneyStock,
         setmoneyStock,
         check,
-        setcheck
+        setcheck,
+        moneystockBackdrop,
+        setmoneystockBackdrop
     }
     const getValue = async() =>{
+        await setmoneystockBackdrop(true)
         const value = await moneystockAction.Get();
         console.log('moneyStock:',value.data)
         setmoneyStock({...moneyStock,moneylist:value.data});
+        await setmoneystockBackdrop(false)
     }
     useEffect(()=>{
         getValue();
