@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react'
 import { moneystockAction } from '../action/moneystock.action';
+import { useStockContext } from './stockReducer';
 const MoneyStockContext = createContext({})
 
 export function useMoneyStockContext() {
@@ -14,6 +15,7 @@ function MoneyStockProvider({ children }) {
     const [moneyStock,setmoneyStock] = useState(initialMoneyStock);
     const [check,setcheck] = useState(false);
     const [moneystockBackdrop,setmoneystockBackdrop] = useState(false);
+    const {stockBackdrop} = useStockContext();
     const moneyStockStore = {
         moneyStock,
         setmoneyStock,
