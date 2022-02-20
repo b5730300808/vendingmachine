@@ -16,7 +16,7 @@ node v14.15.1 , npm v6.14.8
 Link: https://nodejs.org/en/download/
 
 ### `Download FontEnd Project Github`
-Link: https://github.com/b5730300808/vendingmachine.git \
+Link: https://github.com/b5730300808/vendingmachine.git 
 
 Download เสร็จแล้ว ใส่ Command นี้ \
 command> cd vendingmachine \
@@ -24,7 +24,7 @@ command/vendingmachine> npm install \
 command/vendingmachine> npm start 
 
 ### `Download API Project Github`
-Link: https://github.com/b5730300808/vendingmachineAPI.git \
+Link: https://github.com/b5730300808/vendingmachineAPI.git 
 
 Download เสร็จแล้ว ใส่ Command นี้ \
 command> cd vendingmachineAPI \
