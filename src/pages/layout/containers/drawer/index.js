@@ -31,17 +31,17 @@ const DrawerLayout = (props) =>{
         >
         <Divider />
             <List>
-                <ListItem button onClick={onClick} key={'Stock'}>
-                    <ListItemIcon>
-                        <Inventory2Icon />
-                    </ListItemIcon>
-                    <ListItemText primary={'Stock'} />
-                </ListItem>
                 <ListItem button onClick={onClickHome} key={'Home'}>
                     <ListItemIcon>
                         <HomeIcon />
                     </ListItemIcon>
                     <ListItemText primary={'Home'} />
+                </ListItem>
+                <ListItem button onClick={onClick} key={'Stock'}>
+                    <ListItemIcon>
+                        <Inventory2Icon />
+                    </ListItemIcon>
+                    <ListItemText primary={'Stock'} />
                 </ListItem>
                 <ListItem button onClick={onClickMoneyStock} key={'Money Stock'}>
                     <ListItemIcon>
