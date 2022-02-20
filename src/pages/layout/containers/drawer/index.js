@@ -11,8 +11,10 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import HomeIcon from '@mui/icons-material/Home';
 import MoneyIcon from '@mui/icons-material/Money';
 import { useNavigate } from 'react-router-dom';
+import { useMoneyStockContext } from '../../../../reducer/moneystockReducer';
 const DrawerLayout = (props) =>{
     const navigate = useNavigate()
+    const {check,setcheck} = useMoneyStockContext();
     const {open,onClose} = props;
     const onClick = () =>{
         navigate('/stock')
@@ -21,6 +23,7 @@ const DrawerLayout = (props) =>{
         navigate('/')
     }
     const onClickMoneyStock = () =>{
+        setcheck(!check)
         navigate('/moneystock')
     }
     return(

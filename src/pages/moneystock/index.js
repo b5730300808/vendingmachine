@@ -26,6 +26,7 @@ function MoneyStock() {
         setopenedit(false)
     }
     const onEdit = async() =>{
+        setcheck(!check);
         if(moneyStock.amount === ""){
             await setalert({ ...alert,text:'กรุณากรอกข้อมูลให้ครบ',colorNotify:'warning',open: true })
         }
@@ -36,7 +37,6 @@ function MoneyStock() {
             if(status.data.success){
                 await setalert({ ...alert,text:'แก้ไขจำนวนสำเร็จ',colorNotify:'success',open: true })
                 setopenedit(false);
-                setcheck(!check);
             }
             else{
                 await setalert({ ...alert,text:'แก้ไขจำนวนไม่สำเร็จ',colorNotify:'error',open: true })
