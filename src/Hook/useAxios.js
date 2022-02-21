@@ -1,5 +1,5 @@
 import axios from 'axios';
-const url = "https://vendingmachine-api-jobjab.herokuapp.com"
+const url = "http://localhost:9000"
 const instance = axios.create({
     baseURL: url,
     headers: {
