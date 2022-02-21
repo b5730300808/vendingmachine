@@ -31,6 +31,9 @@ command> cd vendingmachineAPI \
 command/vendingmachineAPI> npm install \
 command/vendingmachineAPI> npm start 
 
+### Deploy Web in Heroku
+Link: https://vendingmachine-jobjab.herokuapp.com/moneystock
+
 
 
 
