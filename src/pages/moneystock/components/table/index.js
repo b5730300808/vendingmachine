@@ -29,7 +29,7 @@ function Tables(props){
         setmoneyStock
     } = useMoneyStockContext()
     const onEdit = (value) => async(e) =>{
-        setmoneyStock({...moneyStock,name:value})
+        setmoneyStock({...moneyStock,name:value,amount:''})
         setopenedit(true)
     }
     return(

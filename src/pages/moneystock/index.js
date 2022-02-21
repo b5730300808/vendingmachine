@@ -18,6 +18,7 @@ function MoneyStock() {
         check,
         setcheck,
         moneyStock,
+        setmoneyStock,
         moneystockBackdrop,
         setmoneystockBackdrop
     } = useMoneyStockContext()
@@ -36,7 +37,7 @@ function MoneyStock() {
             setmoneystockBackdrop(false)
             if(status.data.success){
                 await setalert({ ...alert,text:'แก้ไขจำนวนสำเร็จ',colorNotify:'success',open: true })
-                setopenedit(false);
+                await setopenedit(false);
             }
             else{
                 await setalert({ ...alert,text:'แก้ไขจำนวนไม่สำเร็จ',colorNotify:'error',open: true })
